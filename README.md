@@ -3,7 +3,6 @@
 Mining pool server for **ParnianCoin (PARC)**, a RandomHash cryptocurrency.
 Live instance: https://pool.parniancoin.com — Website: https://parniancoin.com
 
-[فارسی](README.fa.md)
 
 - Stratum server with variable difficulty and per-port settings
 - Automatic block unlocking and PARC / account payouts
