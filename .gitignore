@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+logs/
+*.log
+data/
+*.sqlite*
+dump.rdb
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+config.json
+src/assets/material-kit.scss
+src/assets/material-kit/

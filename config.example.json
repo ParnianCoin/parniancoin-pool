@@ -1,0 +1,482 @@
+{
+    /**
+     * ParnianCoin Mainnet Configuration
+     */
+
+    /* Frontend URL of the pool */
+    "poolUrl": "https://pool.parniancoin.com/",
+
+    /* Hostname miners should connect to */
+    "poolHost": "stratum.parniancoin.com",
+
+    /* Frontend name of the pool */
+    "poolName": "ParnianCoin Pool",
+
+    /* Payload prefix, must be 15 characters or less without spaces */
+    "poolId": "ParnianPool",
+
+    /* Coin settings */
+    "coin": "ParnianCoin",
+    "symbol": "PARC",
+    "algorithm": "RandomHash",
+
+    /**
+     * Logging Settings
+     *
+     * level can be info, warn, or error
+     * all levels that are equal or more severe than the
+     * setting will be displayed.
+     */
+    "logging": {
+	"files": {
+	    "level": "info",
+	    "directory": "logs",
+	    "flushInterval": 5 // seconds
+	},
+	"console": {
+	    "level": "info",
+	    "colors": true
+	}
+    },
+
+    /**
+     * Pool Server Settings
+     */
+    "poolServer": {
+        /* Enable this module */
+	"enabled": true,
+
+        /* How many seconds until miner is considered disconnected */
+	"connectionTimeout": 600,
+
+        /* If no new job rebroadcast current work so miners do not disconnect */
+	"jobRebroadcastTimeout": 55, // seconds
+
+        /* Enable for client IP addresses to be detected when using a load balancer with TCP
+         * proxy protocol enabled, such as HAProxy with 'send-proxy' param:
+         * http://haproxy.1wt.eu/download/1.5/doc/configuration.txt
+         */
+	"tcpProxyProtocol": false,
+
+        /* If workers find two solutions to the same block before one of them is accepted
+         * then you can control if they will be submitted.
+         */
+        "submitDuplicateBlockHeight": true,
+
+        /* Allow miners to modify the timestamp of the block */
+        "allowTimestampVariance": true,
+
+        /* Amount of time that old passwords are cached */
+        "passwordExpireTime": 3600,
+
+        /* Start multiple threads for the pool server module
+         * Set to "auto" by default which will spawn one process/fork/worker for each CPU
+         * core in your system. Each of these workers will run a separate instance of your
+         * pool, and the kernel will load balance miners using these forks. Optionally,
+         * the 'forks' field can be a number for how many forks will be spawned.
+         */
+	"clustering": {
+            "enabled": true,
+            "forks": "auto"
+	},
+
+        /**
+         * Port Configuration
+         *
+         * You can have as many ports for your miners to connect to as you wish. Each port can be
+         * configured to use its own difficulty and variable difficulty settings. varDiff is
+         * optional and will only be used for the ports you configure it for.
+         *
+         * You can also give each port a description and make it hidden from the frontend.
+         */
+
+"ports": [
+	    {
+                "port": "38008",
+		"diff": 0.00006985,
+		"desc": "Variable difficulty (10 kH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38018",
+		"diff": 0.00034925,
+		"desc": "Variable difficulty (50 kH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38028",
+		"diff": 0.00139698,
+		"desc": "Variable difficulty (200 kH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38038",
+		"diff": 0.00349246,
+		"desc": "Variable difficulty (500 kH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38048",
+		"diff": 0.01047738,
+		"desc": "Variable difficulty (1.5 MH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38058",
+		"diff": 0.02095476,
+		"desc": "Variable difficulty (3 MH/s)",
+		"hidden": false,
+		"varDiff": {
+		    "minDiff": 0.00000100,
+		    "maxDiff": 0.05000000,
+		    "targetTime": 30,
+		    "retargetTime": 90,
+		    "variancePercent": 30
+		}
+	    },
+	    {
+		"port": "38068",
+		"diff": 0.03492460,
+		"desc": "Fixed difficulty (5 MH/s or greater)",
+		"hidden": false
+	    }
+	],
+        /* If a worker is submitting a high threshold of invalid shares we can temporarily ban their IP
+         * to reduce system/network load. Also useful to fight against flooding attacks. If running
+         * behind something like HAProxy be sure to enable 'tcpProxyProtocol', otherwise you'll end up
+         * banning your own IP address (and therefore all workers).
+        */
+	"banning": {
+            /* Enable banning */
+	    "enabled": true,
+
+            /* How many seconds to ban worker for*/
+	    "time": 600,
+
+            /* What percent of invalid shares triggers ban */
+	    "invalidPercent": 60,
+
+            /* Check invalid percent when this many shares have been submitted */
+	    "checkThreshold": 100
+	}
+    },
+
+    /**
+     *  Payment Configuration
+     */
+    "payments": {
+        /* Enable payments module */
+        "enabled": true,
+
+        /* How often to run in seconds */
+        "interval": 600,
+
+        /* Default payment threshold */
+        "defaultPayment": 1,
+
+        /* Minimum payment threshold */
+        "minPayment": 0.5,
+
+        /* Maximum payment threshold */
+        "maxPayment": 100,
+
+        /* Amount of PARC mined per new account payout */
+        "accountThreshold": 10,
+
+        /* Default b58 public key to donate unclaimed accounts to.
+         * Replace this with your own pool wallet's b58 public key. */
+        "accountDonations": false,
+
+        /* Fixed pool account and key; everything else in the node wallet is off-limits */
+        "mainAccount": 0,  // your pool wallet main account number
+        "poolEncPubkey": "YOUR_POOL_WALLET_ENC_PUBKEY",
+        "excludeAccounts": []
+    },
+
+    /**
+     *  Block Unlocker Configuration
+     */
+    "blockUnlocker": {
+        /* Enable this module */
+        "enabled": true,
+
+        /* How often to check block statuses in seconds */
+        "interval": 30,
+
+        /* How many confirmations until balances are confirmed
+         * ParnianCoin network requires 100 confirms, but you can decrease
+         * this if you have extra PARC / accounts in your pool wallet */
+        "depth": 100
+    },
+
+    /**
+     *  Fee Configuration
+     */
+    "fees": {
+        /* Pool fee as a percentage, i.e. 1 is 1% */
+        "poolFee": 0,
+
+        /* Pool development fee as a percentage, i.e. 0.5 is 0.5%.
+         * Paid to the ParnianCoin developer account 9 (see lib/paymentProcessor.js).
+         * Please consider leaving it in to support ongoing development. */
+        "devFee": 0.5,
+
+        /* Protocol-level developer share, as a percentage of the block reward.
+         * ParnianCoin sends 20% of every block reward to account 9 automatically;
+         * miners are credited only with the remaining 80%. Do not change. */
+        "networkFee": 20
+    },
+
+    /**
+     * Exchange Configuration
+     *
+     * Array of known account numbers, their common name, and if they require payment ID
+     */
+    "knownAccounts": [
+        /* These entries were sample PascalCoin exchange accounts and have been
+         * removed because they do not apply to ParnianCoin. Add your own
+         * known exchange/service accounts here, e.g.:
+         * { "account": "12345-67", "name": "MyExchange", "requirePaymentID": true }
+         */
+    ],
+
+    /**
+     * Daemon Configuration
+     */
+    "daemon": {
+        /* IP of parniancoin_daemon */
+        "host": "127.0.0.1",
+
+        /* RPC port of parniancoin_daemon */
+        "port": 38003,
+
+        /* Mining port of parniancoin_daemon */
+        "miningPort": 38009,
+
+        /* Password of the pool wallet open in the daemon
+         * Make sure to set this with curl before operation!
+         * The pool will automatically unlock and relock the
+         * wallet during payments.
+         */
+        "password": "CHANGE_ME",
+
+        /* Daemon monitoring for admin page */
+        "monitoring": {
+            "enabled": true,
+            "interval": 60
+        }
+    },
+
+    /**
+     * Redis Configuration
+     */
+    "redis": {
+        /* IP of redis server */
+	"host": "127.0.0.1",
+
+        /* Port of redis server */
+	"port": 6379,
+
+        /* Database index */
+	"database": 0,
+
+        /* Redis prefix */
+	"prefix": "parc_mainnet",
+
+        /* Redis auth */
+	"auth": "CHANGE_ME",
+
+        /* Days to keep redis data */
+	"cleanupInterval": 7
+    },
+
+    /**
+     * API Configuration
+     */
+    "api": {
+        /* Enable this module */
+        "enabled": true,
+
+        /* How many second worth of shares used to estimate hash rate */
+        "hashrateWindow": 600,
+
+        /* Gather stats and broadcast every this many seconds */
+        "updateInterval": 5,
+
+        /* Bind API to localhost and publish it through nginx (/api/ -> this port) */
+        "bindIp": "127.0.0.1",
+
+        /* Port to serve API on */
+        "port":38400 ,
+
+        /* Number of blocks to send at a time */
+        "blocks": 30,
+
+        /* Number of payments to send at a time */
+        "payments": 30,
+
+        /* Password required for admin stats */
+        "password": "CHANGE_ME",
+
+        /* Proxy X-Forwarded-For support */
+        "trustProxyIP": true
+    },
+
+    /**
+     * Charts Configuration
+     */
+    "charts": {
+        /* General Pool Charts */
+        "pool": {
+            "hashrate": {
+                /* Enable this chart */
+                "enabled": true,
+                /* How often to get current value */
+                "updateInterval": 60,
+                /* Chart step interval calculated as average of all updated values */
+                "stepInterval": 900,
+                /* Max time to store charts, 604800 = 1 week */
+                "maximumPeriod": 604800
+            },
+            "miners": {
+                "enabled": true,
+                "updateInterval": 60,
+                "stepInterval": 900,
+                "maximumPeriod": 604800
+            },
+            "workers": {
+                "enabled": true,
+                "updateInterval": 60,
+                "stepInterval": 900,
+                "maximumPeriod": 604800
+            },
+            "nethash": {
+                "enabled": true,
+                "updateInterval": 60,
+                "stepInterval": 900,
+                "maximumPeriod": 604800
+            },
+            "priceUSD": {
+                "enabled": true,
+                "updateInterval": 300,
+                "stepInterval": 1800,
+                "maximumPeriod": 604800
+            },
+            "priceBTC": {
+                "enabled": true,
+                "updateInterval": 300,
+                "stepInterval": 1800,
+                "maximumPeriod": 604800
+            },
+            "blocks": {
+                "enabled": true,
+                "days": 7
+            }
+        },
+
+        /* User specific Pool Charts */
+        "user": {
+            "hashrate": {
+                "enabled": true,
+                "updateInterval": 60,
+                "stepInterval": 900,
+                "maximumPeriod": 604800
+            },
+            "worker_hashrate": {
+                "enabled": true,
+                "updateInterval": 60,
+                "stepInterval": 900,
+                "maximumPeriod": 604800
+            },
+            "payments": {
+                "enabled": true
+            }
+        }
+    },
+
+    /**
+     * Email Configuration
+     */
+    "email": {
+        /* Enable email notifications */
+        "enabled": false,
+
+        /* Send HTML emails */
+        "useHTML": false,
+
+        /* Default user notifications */
+        "defaultNotifications": "worker_start,worker_stop,payment_parc,payment_account",
+
+        /* Address emails will be sent from */
+        "fromAddress": "email@example.com",
+
+        /* The transport mode (sendmail, smtp or mailgun) */
+        "transport": "mailgun",
+
+        /* Configuration for sendmail transport
+         * Documentation: http://nodemailer.com/transports/sendmail/
+         */
+        "sendmail": {
+            "path": "/usr/sbin/sendmail"
+        },
+
+        /* Configuration for SMTP transport
+         * Documentation: http://nodemailer.com/smtp/
+         */
+        "smtp": {
+            "host": "smtp.example.com",
+            "port": 587,
+            "secure": false,
+            "auth": {
+                "user": "username",
+                "pass": "CHANGE_ME"
+            },
+            "tls": {
+                "rejectUnauthorized": false
+            }
+        },
+
+        /* Configuration for MailGun transport
+         * Documentation: https://documentation.mailgun.com
+         */
+        "mailgun": {
+            "key": "",
+            "domain": ""
+        }
+    }
+}

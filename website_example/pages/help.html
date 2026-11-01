@@ -1,0 +1,359 @@
+<!-- Connection Details -->
+<div class="row">
+  <div class="col-md-6">
+
+    <h3>
+      <span tkey="connectionDetails">Connection Details</span>
+    </h3>
+    <div class="card px-3 py-2 mb-3">
+      <p>
+        <i class="fa fa-cloud"></i>
+        <span tkey="miningPoolHost">Mining Pool Address</span>:
+        <span id="miningPoolHost"></span>
+      </p>
+      <p>
+        <i class="fa fa-cubes"></i>
+        <span tkey="algorithm">Algorithm</span>:
+        <span id="algorithm"></span>
+      </p>
+    </div>
+
+    <h3>
+      <span tkey="username">Username<span>
+    </h3>
+    <div class="card px-3 py-2 mb-3">
+      <p>
+        <i class="fa fa-key"></i>
+        <span tkey="localWallet">Mining to a local wallet</span>:
+        <code>ACCOUNT.0.WORKER/EMAIL</code>
+      </p>
+      <p>
+        <i class="fa fa-exchange"></i>
+        <span tkey="exchangeWallet">Mining to exchange wallet</span>:
+        <code>ACCOUNT.PAYMENT_ID.WORKER/EMAIL</code>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Mining ports -->
+  <div class="col-md-6 mb-3">
+    <h3><span tkey="miningPorts">Mining Ports</span></h3>
+    <div class="card">
+      <div id="miningPorts" class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th class="col1"><span tkey="port">Port</span></th>
+              <th class="col2"><span tkey="portDiff">Starting Difficulty</span></th>
+              <th class="col3"><span tkey="description">Description</span></th>
+              <th class="col4"><span tkey="users">Users</span></th>
+            </tr>
+          </thead>
+          <tbody id="miningPorts_rows">
+            <tr>
+              <td class="col1"><span class="miningPort"></span></td>
+              <td class="col2"><span class="miningPortDiff"></span></td>
+              <td class="col3"><span class="miningPortDesc"></span></td>
+              <td class="col4"><span class="miningPortUsers"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Configuration Generator -->
+<h3><span tkey="configGenerator">Configuration Generator</span></h3>
+
+<!-- Configuration Generator -->
+<div class="card p-3 mb-3">
+  <p><span tkey="configGeneratorDesc">Generate your custom configuration to mine on our pool</span></p>
+
+  <div id="configGenerator" class="form-row mt-3">
+
+    <div class="form-group col-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-link"></i>
+          </div>
+        </div>
+        <select class="form-control" id="gMiningPort"></select>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6 col-xs-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-key"></i>
+          </div>
+        </div>
+        <input class="form-control" id="gAccount" type="text" tplaceholder="accountField" placeholder="Account" required="required" />
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6 col-xs-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-exchange"></i>
+          </div>
+        </div>
+        <input class="form-control" id="gPaymentID" type="text" tplaceholder="paymentIdField" placeholder="Payment ID for exchanges (optional)" />
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6 col-xs-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-server"></i>
+          </div>
+        </div>
+        <input class="form-control" id="gWorkerName" tplaceholder="workerNameField" type="text" placeholder="Worker Name" />
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6 col-xs-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fa fa-at"></i>
+          </div>
+        </div>
+        <input class="form-control" id="gEmail" tplaceholder="emailField" type="text" placeholder="Email / Password" />
+      </div>
+    </div>
+
+  </div>
+
+  <!--
+  <h5 class="mt-3">Config for rhminer (Windows)</h5>
+  <p>
+    <code>
+      :start<br/>
+      &nbsp;&nbsp;REM Mining on <span class="exampleHost">POOL_HOST</span> with four CPU thread<br/>
+      &nbsp;&nbsp;rhminer.exe -r 20 -s stratum+tcp://<span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span> -su <span class="exampleLogin">ACCOUNT.0.WORKER/EMAIL</span> -cpu -cputhreads 4<br/>
+      goto start
+    </code>
+  </p>
+  <h5 class="mt-3">Config for rhminer (Linux)</h5>
+  <p>
+    <code>
+      #!/bin/bash<br/>
+      while true<br/>
+      do<br/>
+      &nbsp;&nbsp;echo Mining on <span class="exampleHost">POOL_HOST</span> with four CPU thread<br/>
+      &nbsp;&nbsp;./rhminer -r 20 -s <span class="exampleHost">POOL_HOST</span>:<span class="examplePort">PORT</span> -su <span class="exampleLogin">ACCOUNT.0.WORKER/EMAIL</span> -cpu -cputhreads 4<br/>
+      done
+    </code>
+  </p>
+  -->
+  <h5 class="mt-3">Config for parnianminer (Windows &amp; Linux)</h5>
+  <p>
+    <code>
+      ./parnianminer.exe -v 1 -r 20 -s stratum.parniancoin.com:auto -su YOUR_PARNIAN_ACCOUNT.rig1 -pw x -cpu -cputhreads 0<br><span style="color:#39ff14;">#version = "2.4.2 Release Date:2026/10/11"</span>
+    </code>
+  </p>
+
+</div>
+
+<!-- FAQ -->
+<h3 class="mt-3"><span tkey="faq">Frequently Asked Questions</span></h3>
+
+<div class="card p-3 mb-3">
+  <h5>Which mining software can I use?</h5>
+<!--
+  <p>This pool is compatible with both <a href="https://github.com/polyminer1/rhminer/releases" target="_blank">rhminer</a> and <a href="https://github.com/nanopool/nanominer/releases" target="_blank">nanominer</a>. The open sourced rhminer is recommended as its 1% fee supports the development of ParnianCoin. The closed sourced nanominer has a 3% to 5% fee and does not support development. Please choose your miner software carefully.</p>
+-->
+  <p>Please use <a href="https://parniancoin.com/#downloads" target="_blank">parnianminer</a>, the official ParnianCoin CPU miner, to mine to this pool.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Should I use my CPU or GPU to mine?</h5>
+  <p>ParnianCoin uses the RandomHash algo which is most effective with CPUs. There is no current software that supports mining ParnianCoin with GPUs.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Where do I get a ParnianCoin account?</h5>
+  <p>ParnianCoin uses a unique address system with human readable numbers such as 1234-56 called an Account. This is opposed to a long string of numbers or letters like most other cryptocurrencies. You must have an account in order to receive coins in your wallet. You can create a free account from the <a href="https://wallet.parniancoin.com/" target="_blank">ParnianCoin web wallet</a>. This pool also pays out one new account for every <span id="accountPaymentsMinimum">10 PARC</span> you earn.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Do I need to register an account to mine here?</h5>
+  <p>You do not need to register an account at this pool. You only need to have an account as explained in the previous question. Once your miner connects to this pool, your stats will start showing up.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Which port should I use?</h5>
+  <p>This pool uses variable difficulty so the pool will adjust difficulty to match your hashate. However, you should choose the port that has a starting difficulty that is closest to the hashrate of your miner.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Why does this pool ask for my email?</h5>
+  <p>Your email is used for notifications of payouts / worker status and will never be visible publicly. It is also used as your password in order to change miner settings. If you do not want to disclose your email, you put something else in that field like "my_random_password" in order to still access your miner settings.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>How do I change my payout settings?</h5>
+  <p>When you start mining, set the email / password field in your miner settings. On your account page under the settings window you can change various settings for your miner. For security reasons, all of your connected workers must use the same email / password. If you have recently changed the password of your workers, you must wait <span id="passwordExpireTime">1 hour</span> for your old password to expire.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Which payment scheme is used?</h5>
+  <p>Proportional (PROP) which means every time a block is found, the block reward is split between miners according to the number of shares they submitted during the current round.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>What is a Round?</h5>
+  <p>A new round starts every time the pool finds a block. At that point, the block effort will reset as well as your round contribution percent.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>What is the block effort percentage?</h5>
+  <p>Mining is probabilistic in nature. If you find a block earlier than you statistically should you are lucky. If it takes longer, you are unlucky. In a perfect world, the pool would find a block on 100% luck value every time. Over time, lucky and unlucky blocks will cancel each other out and converge to near 100% overall effort.</p>
+  </p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>When is my balance paid?</h5>
+  <p>When this pool finds a block, your share of the reward will be added to your unconfirmed balance within 10 minutes. Once the block has matured with <span id="blocksMaturityCount">100</span> confirms, your share of the reward will be added to your confirmed balance. When your balance exceeds <span id="paymentsMinimum">0.5000 PARC</span> it will be available for payout. Payouts occur every <span id="paymentsInterval">10 minutes</span>.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>Why is my hashrate wrong on this pool?</h5>
+  <p>When you start to mine your hashrate grows gradually. The pool determines your hashrate based on the amount of shares sent by your mining rigs. This value could be a little bit different from the hashrate your mining software reports. Over time, your 6/24 hour hashrate should be accurate.</p>
+</div>
+
+<div class="card p-3 mb-3">
+  <h5>What is the difference between a share and a hash?</h5>
+  <p>Each share is a possible valid hash for the block, and are sent from your rigs to the pool to prove their work. The difficulty set by the pool is much lower than the network difficulty in order to let you find shares easily. Since this pool supports variable difficulty ports, all shares are not equal. If you have a higher hashrate your difficulty will increase, but each share you submit will be worth more than a share of a lower hashrate worker. Total hashes on this pool indicates how many hashes it takes to create a share of a given difficulty.</p>
+</div>
+
+<!-- Javascript -->
+<script>
+
+var lastPortsJson = "";
+var $miningPorts = $("#miningPorts_rows");
+var miningPortTemplate = $miningPorts.html();
+$miningPorts.empty();
+
+var $miningPortSelect = $("#gMiningPort");
+$miningPortSelect.empty();
+
+// Update current page
+currentPage = {
+    destroy: function(){
+    },
+    update: function(){
+        var portsJson = JSON.stringify(lastStats.config.ports);
+        if (lastPortsJson !== portsJson) {
+            lastPortsJson = portsJson;
+            var $miningPortChildren = [];
+	    var $miningPortOptions = [];
+            for (var i = 0; i < lastStats.config.ports.length; i++) {
+                var portData = lastStats.config.ports[i];
+                var $portChild = $(miningPortTemplate);
+                $portChild.find(".miningPort").text(portData.port);
+                $portChild.find(".miningPortDiff").text(portData.diff.toFixed(9));
+                $portChild.find(".miningPortDesc").text(portData.desc);
+                $portChild.find(".miningPortUsers").text(Math.max(0, portData.users || 0));
+                $miningPortChildren.push($portChild);
+		$miningPortOptions.push('<option value="'+portData.port+'">'+portData.port+' &ndash; '+portData.desc+'</option>');
+            }
+            $miningPorts.empty().append($miningPortChildren);
+            $miningPortSelect.empty().append($miningPortOptions);
+            updateTextClasses("examplePort", lastStats.config.ports[0].port.toString());
+        }
+
+        updateText("miningPoolHost", getPoolHost());
+        updateTextClasses("exampleHost", getPoolHost());
+
+        var coin = lastStats.config.coin.toLowerCase() || null;
+        var algorithm = lastStats.config.algorithm;
+
+        updateText("algorithm", algorithm);
+
+        updateText("accountPaymentsMinimum", lastStats.config.accountThreshold + " " + lastStats.config.symbol);
+        updateText("passwordExpireTime", getReadableTime(lastStats.config.passwordExpireTime || 3600));
+        updateText("paymentsMinimum", lastStats.config.defaultPaymentThreshold + " " + lastStats.config.symbol);
+        updateText("paymentsInterval", getReadableTime(lastStats.config.paymentsInterval));
+        updateText("blocksMaturityCount", lastStats.config.depth);
+
+    }
+};
+
+/**
+ * Configuration generator
+ **/
+
+$("#configGenerator input, #configGenerator select").bind("keyup change", function() {
+
+    $("#configGenerator input").removeClass("is-invalid");
+
+    // Mining Port
+    var port = $("#gMiningPort").val();
+
+    // Username
+    var account = $("#gAccount").val().replace(/\s+/g, "").trim();
+    var paymentID = $("#gPaymentID").val().replace(/\s+/g, "").trim();
+    var workerName = $("#gWorkerName").val().replace(/\s+/g, "").trim();
+    var email = $("#gEmail").val().replace(/\s+/g, "").trim();
+
+    paymentID = paymentID ? paymentID : "0";
+
+    var login = (account ? account : "YOUR_ACCOUNT") + "." + paymentID;
+    if (workerName) login += "." + workerName;
+    if (email) login += "/" + email;
+
+    // Validate
+    var hasError = false;
+    var accountValid = true;
+    if(/^[0-9\-]+$/.test(account)) {
+        if((account.match(/-/g) || []).length == 1) {
+            var address_parts = account.split("-");
+            if(((address_parts[0]*101) % 89) + 10 != address_parts[1]) {
+                // checksum does not matche
+                accountValid = false;
+            }
+        }
+    } else {
+        accountValid = false;
+    }
+    if(!accountValid) {
+        hasError = true;
+        $("#gAccount").addClass("is-invalid");
+    }
+
+    if(!/^[0-9A-Fa-f]{16}$/.test(paymentID) && paymentID != "0") {
+        hasError = true;
+        $("#gPaymentID").addClass("is-invalid");
+    }
+
+    if(workerName.indexOf(" ") !== -1) {
+        hasError = true;
+        $("#gWorkerName").addClass("is-invalid");
+    }
+
+    if(email.indexOf(" ") !== -1) {
+        hasError = true;
+        $("#gEmail").addClass("is-invalid");
+    }
+
+    if(hasError) {
+        return;
+    }
+
+    updateTextClasses("examplePort", port);
+    updateTextClasses("exampleLogin", login);
+    updateTextClasses("exampleAccount", account);
+    updateTextClasses("examplePaymentId", paymentID);
+    updateTextClasses("exampleRigName", workerName);
+    updateTextClasses("exampleEmail", email);
+
+});
+</script>

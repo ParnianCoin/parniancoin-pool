@@ -1,0 +1,45 @@
+{
+  "name": "parniancoin-pool",
+  "version": "0.0.10",
+  "description": "ParnianCoin (PARC) mining pool",
+  "homepage": "https://parniancoin.com",
+  "license": "GPL-2.0",
+  "main": "init.js",
+  "author": {
+    "name": "Amir Reza Zamani",
+    "email": "info@parniancoin.com",
+    "url": "https://parniancoin.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parniancoin/parniancoin-pool.git"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "base58-native": "^0.1.4",
+    "bignum": "^0.13.0",
+    "cli-color": "^1.4.0",
+    "dateformat": "^3.0.3",
+    "mailgun.js": "^2.0.1",
+    "node-json-minify": "^1.0.0",
+    "node-randomhash": "file:vendor/node-randomhash",
+    "nodemailer": "^2.7.2",
+    "nodemailer-sendmail-transport": "^1.0.2",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "keywords": [
+    "randomhash",
+    "parniancoin"
+  ],
+  "engines": {
+    "node": ">=8.1.4"
+  },
+  "bugs": {
+    "url": "https://github.com/parniancoin/parniancoin-pool/issues"
+  }
+}
